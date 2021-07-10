@@ -13,6 +13,11 @@ class ArticleAdminForm(forms.ModelForm):
 class ArticleAdmin(admin.ModelAdmin):
     form = ArticleAdminForm
 
+    def save_model(self, request, obj, form, change):
+        if not obj.created_by:
+            obj.created_by = request.user
+        obj.save()
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category)
 admin.site.register(Reply)

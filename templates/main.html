@@ -1,0 +1,23 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Доска объявлений
+{% endblock title %}
+
+{% block content %}
+    <h1>Все товары</h1>
+    {% if articles %}
+        {% for article in articles %}
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">{{ article.name }}</div>
+                 <div class="card-body">
+                 <h4 class="card-title">{{ article.author }}</h4>
+                 <h4 class="card-title">{{ article.category }}</h4>
+                  <p class="card-text">{{ article.body|safe }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>Объявлений нет!</h2>
+    {% endif %}
+{% endblock content %}

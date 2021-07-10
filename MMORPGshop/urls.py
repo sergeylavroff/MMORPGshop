@@ -18,9 +18,16 @@ from django.urls import path
 from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from main.views import ArticleList, ArticleCreateView, ArticleUpdateView, ReplyView, ArticleOne, ReplyList
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',ArticleList.as_view()),
+    path('add', ArticleCreateView.as_view(), name='article_create'),
+    path('edit/<int:pk>/', ArticleUpdateView.as_view(), name='article_edit'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('more/<int:pk>/',ArticleOne.as_view(), name='article_one'),
+    path('reply/<int:pk>/',ReplyView.as_view(success_url='/'), name='reply'),
+    path('replies',ReplyList.as_view(), name='replies'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

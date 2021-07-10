@@ -1,0 +1,21 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Отклики на мои объявления
+{% endblock title %}
+
+{% block content %}
+    {% if replies %}
+        {% for reply in replies %}
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">{{ reply.article.name }}</div>
+                 <div class="card-body">
+                 <h4 class="card-title">{{ reply.user }}</h4>
+                  <p class="card-text">{{ reply.text|safe }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>Откликов нет!</h2>
+    {% endif %}
+{% endblock content %}
