@@ -1,0 +1,22 @@
+{% extends 'default.html' %}
+
+{% block title %} Article list {% endblock title %}
+
+{% block content %}
+<h2>Вы действительно хотите удалить это объявление?</h2>
+<div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">{{ article.name }}</div>
+                 <div class="card-body">
+                 <h4 class="card-title">{{ article.author }}</h4>
+                 <h4 class="card-title">{{ article.category }}</h4>
+                 <p class="card-text">{{ article.body|safe }}</p>
+                </div>
+            </div>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="подтвердить"></form>
+
+<a class="btn btn-primary" href="/ ">Вернуться к списку новостей</a> <br>
+
+{% endblock content %}

@@ -5,14 +5,25 @@
 {% endblock title %}
 
 {% block content %}
+    Пользователь {{ user }}
+    <form method="GET">
+    {{ form }}
+    <input type="submit" value="Найти">
+    </form>
     {% if replies %}
         {% for reply in replies %}
             <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-header">{{ reply.article.name }}</div>
+                <div class="card-header">{{ reply.article.name }} {{ reply.article.author }}</div>
                  <div class="card-body">
-                 <h4 class="card-title">{{ reply.user }}</h4>
+                 <h4 class="card-title">Автор отклика {{ reply.user }}</h4>
                   <p class="card-text">{{ reply.text|safe }}</p>
                 </div>
+                <form method="get" action="/reply/{{ reply.id }}/delete">
+                     <button type="submit" class="btn btn-danger">Удалить отклик</button>
+                </form>
+                <form method="get" action="/reply/{{ reply.id }}/accept">
+                     <button type="submit" class="btn btn-success">Принять отклик</button>
+                </form>
             </div>
         {% endfor %}
     {% else %}

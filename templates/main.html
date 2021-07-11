@@ -15,6 +15,9 @@
                  <h4 class="card-title">{{ article.category }}</h4>
                   <p class="card-text">{{ article.body|safe }}</p>
                 </div>
+                <form method="get" action="/reply/{{ article.id }}">
+                     <button type="submit" class="btn btn-success">Откликнуться</button>
+                </form>
             </div>
         {% endfor %}
     {% else %}

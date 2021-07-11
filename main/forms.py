@@ -9,12 +9,19 @@ class ArticleForm(ModelForm):
         model = Article
         fields = ['name', 'body', 'category']
 
+class ReplySearch(ModelForm):
+    article = forms.ModelChoiceField(queryset=Article.objects.all())
+    class Meta:
+        model = Reply
+        fields = ['article']
+
 class ReplyForm(ModelForm):
     text = forms.CharField(widget=CKEditorUploadingWidget())
     class Meta:
         model = Reply
         fields = ['text']
 
-    # def save(self, commit=True):
-    #     self.instance.user = self.request.user
-    #     return super().save(commit=commit)
+class ReplyAcceptForm(ModelForm):
+    class Meta:
+        model = Reply
+        fields = ['confirmed']

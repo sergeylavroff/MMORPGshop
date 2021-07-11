@@ -1,6 +1,7 @@
 from django import forms
+from django.db import models
 from django.contrib import admin
-from .models import Article, Category, Reply
+from .models import Article, Category, Reply, UserNotif
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
@@ -18,6 +19,8 @@ class ArticleAdmin(admin.ModelAdmin):
             obj.created_by = request.user
         obj.save()
 
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category)
 admin.site.register(Reply)
+admin.site.register(UserNotif)
